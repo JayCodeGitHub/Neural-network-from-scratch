@@ -1,6 +1,11 @@
 import tensorflow as tf
+import tensorflow_datasets as tfds
 
-x = tf.constant([[1., 2., 3.],[4., 5., 6.]])
+ds = tfds.load('mnist', split='train', shuffle_files=True)
+ds = ds.take(1)
+
+print(next(iter(ds)))
+
 
 def network():
-    print(x)
+    print(ds)
