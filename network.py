@@ -1,11 +1,12 @@
 import tensorflow as tf
-import tensorflow_datasets as tfds
 
-ds = tfds.load('mnist', split='train', shuffle_files=True)
-ds = ds.take(1)
+mnist = tf.keras.datasets.mnist
 
-print(next(iter(ds)))
+(x_train, y_train), (x_test, y_test) = mnist.load_data()
+x_train, x_test = x_train / 255.0, x_test / 255.0
 
 
 def network():
-    print(ds)
+    print(x_train)
+
+
