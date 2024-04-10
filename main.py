@@ -2,8 +2,11 @@ import os
 
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
 
-import tensorflow as tf
+from network import network
 
-x = tf.constant([[1., 2., 3.],[4., 5., 6.]])
 
-print(x)
+def main():
+    network()
+
+if __name__ == "__main__":
+    main()
