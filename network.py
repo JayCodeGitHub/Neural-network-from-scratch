@@ -11,4 +11,3 @@ def network():
     plt.imshow(x_test[0])
     plt.show()
 
-
