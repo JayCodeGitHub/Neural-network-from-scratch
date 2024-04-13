@@ -1,4 +1,6 @@
-def RelU(Z):
+import numpy as np
+
+def ReLU(Z):
     return np.maximum(Z,0)
 
 
