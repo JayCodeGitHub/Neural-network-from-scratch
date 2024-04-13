@@ -4,9 +4,6 @@ import matplotlib.pyplot as plt
 from dataset import x_train, x_test, y_train
 from model import Model
 
-x_train = x_train.reshape(len(x_train), -1)
-
-
 def network():
     inputSize = len(x_train[0])
     outputSize = 10
