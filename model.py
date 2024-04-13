@@ -25,6 +25,14 @@ class Model():
 
     def fit():
         print("fit")
+    def updateParams(W1, b1, W2, b2, W3, b3, dW1, db1, dW2, db2, dW3, db3, alpha):
+        W1 = W1 - alpha * dW1
+        B1 = b1 - alpha * db1
+        W2 = W2 - alpha * dW2
+        B2 = b2 - alpha * db2
+        W3 = W3 - alpha * dW3
+        B3 = b3 - alpha * db3
+    
+    return W1, B1, W2, B2, W3, B3
     def evaluate():
         print("evaluate")
-
