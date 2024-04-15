@@ -5,8 +5,11 @@ from forwardpropagation import forwardpropagation
 from backpropagation import backpropagation
 
 class Model():
-    def __init__(self, inputSize, outputSize):
+    def __init__(self, dataset, outputSize):
         fraction = 2/3
+        inputSize = len(dataset[0])
+
+        self.dataset = dataset
 
         self.W1 = np.random.rand(10, inputSize) - 0.5
         self.B1 = np.random.rand(10, 1) - 0.5
@@ -59,8 +62,8 @@ class Model():
         predictions = self.getPredictions(A3)
         return predictions
 
-    def testPrediction(self, index, x_train, y_train):
-        currentImage = x_train[index].reshape(-1, 1).transpose()
+    def testPrediction(self, index, y_train):
+        currentImage = self.dataset[index].reshape(-1, 1).transpose()
         prediction = self.makePredictions(currentImage, self.W1, self.B1, self.W2, self.B2, self.W3, self.B3)
         label = y_train[index]
         print("Prediction: ", prediction)
