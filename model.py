@@ -1,8 +1,8 @@
 import numpy as np
 import random
-import matplotlib.pyplot as plt
 from forwardpropagation import forwardpropagation
 from backpropagation import backpropagation
+from image import showImage
 
 class Model():
     def __init__(self, dataset, outputSize):
@@ -72,8 +72,5 @@ class Model():
         label = self.labelset[index]
         print("Prediction: ", prediction)
         print("Label: ", label)
-    
-        currentImage = currentImage.reshape((28, 28)) * 255
-        plt.gray()
-        plt.imshow(currentImage, interpolation='nearest')
-        plt.show()
+
+        showImage(currentImage)
