@@ -1,5 +1,6 @@
 import numpy as np
 import random
+import matplotlib.pyplot as plt
 from forwardpropagation import forwardpropagation
 from backpropagation import backpropagation
 
@@ -51,4 +52,21 @@ class Model():
         return W1,B1,W2,B2,W3,B3
 
     def fit(self, x_train, y_train):
-        self.W1,self.B1,self.W2,self.B2, self.W3,self.B3 = self.gradientDescent(x_train,y_train,500,0.10)
+        self.W1,self.B1,self.W2,self.B2, self.W3,self.B3 = self.gradientDescent(x_train,y_train, 500,0.10)
+
+    def makePredictions(self, X, W1, B1, W2, B2, W3, B3):
+        _, _, _, _, _, A3 = forwardpropagation(W1, B1, W2, B2, W3, B3, X)
+        predictions = self.getPredictions(A3)
+        return predictions
+
+    def testPrediction(self, index, x_train, y_train):
+        currentImage = x_train[index].reshape(-1, 1).transpose()
+        prediction = self.makePredictions(currentImage, self.W1, self.B1, self.W2, self.B2, self.W3, self.B3)
+        label = y_train[index]
+        print("Prediction: ", prediction)
+        print("Label: ", label)
+    
+        currentImage = currentImage.reshape((28, 28)) * 255
+        plt.gray()
+        plt.imshow(currentImage, interpolation='nearest')
+        plt.show()
