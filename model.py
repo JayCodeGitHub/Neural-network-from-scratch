@@ -10,6 +10,7 @@ class Model():
         inputSize = len(dataset[0])
 
         self.dataset = dataset
+        self.labelset = None
 
         self.W1 = np.random.rand(10, inputSize) - 0.5
         self.B1 = np.random.rand(10, 1) - 0.5
@@ -55,17 +56,20 @@ class Model():
         return W1,B1,W2,B2,W3,B3
 
     def fit(self, x_train, y_train):
+        self.labelset = y_train
         self.W1,self.B1,self.W2,self.B2, self.W3,self.B3 = self.gradientDescent(x_train,y_train, 500,0.10)
 
     def makePredictions(self, X, W1, B1, W2, B2, W3, B3):
-        _, _, _, _, _, A3 = forwardpropagation(W1, B1, W2, B2, W3, B3, X)
+        image = X.reshape(-1, 1).transpose()
+        
+        _, _, _, _, _, A3 = forwardpropagation(W1, B1, W2, B2, W3, B3, image)
         predictions = self.getPredictions(A3)
         return predictions
 
-    def testPrediction(self, index, y_train):
-        currentImage = self.dataset[index].reshape(-1, 1).transpose()
+    def testPrediction(self, index):
+        currentImage = self.dataset[index]
         prediction = self.makePredictions(currentImage, self.W1, self.B1, self.W2, self.B2, self.W3, self.B3)
-        label = y_train[index]
+        label = self.labelset[index]
         print("Prediction: ", prediction)
         print("Label: ", label)
     
